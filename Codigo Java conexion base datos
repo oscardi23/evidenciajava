@@ -1,0 +1,152 @@
+package evidenciaconexionbd;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Evidenciaconexionbd {
+    private Connection SQLConexion;
+
+    public static void main(String[] args) {
+        Evidenciaconexionbd app = new Evidenciaconexionbd();
+        app.conectar(); // Paso 1: Establecer la conexión a la base de datos
+        app.listarUsuarios(); // Paso 2: Listar los datos de la tabla de usuarios
+       // insertar usuario nuevo
+        app.insertarUsuarioABC();        
+       // Listar los usuarios nuevamente para verificar que el usuario se ha insertado
+        app.listarUsuarios();
+        
+       // Eliminar un usuario con ID 
+        app.eliminarUsuario(18); 
+       // Listar los usuarios nuevamente para verificar que el usuario se ha eliminado
+        app.listarUsuarios();
+        
+       // actualizar usuario
+        app.actualizarUsuario(1, "yurlady", "ruiz");
+
+        // Listar los usuarios nuevamente para verificar que el usuario se ha actualizado
+        app.listarUsuarios();
+        
+        
+    }
+    
+    
+
+    public void conectar() {
+        // Configuración de la conexión a la base de datos
+        String usuario = "root";
+        String password = "";
+        String host = "localhost";
+        String puerto = "3306";
+        String namebd = "motosoft";
+        String driver = "com.mysql.cj.jdbc.Driver";
+        String databaseURL = "jdbc:mysql://" + host + ":" + puerto + "/" + namebd + "?useSSL=false";
+
+        try {
+            Class.forName(driver);
+            SQLConexion = DriverManager.getConnection(databaseURL, usuario, password);
+            System.out.println("Conexión exitosa a la base de datos.");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    // metodo listar usuarios
+    public void listarUsuarios() {
+        try {
+            Statement statement = SQLConexion.createStatement();
+            String query = "SELECT id_usuario, nombre, contraseña FROM usuario";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            System.out.println("lista de usuarios");
+            while (resultSet.next()) {
+                int idUsuario = resultSet.getInt("id_usuario");
+                String nombre = resultSet.getString("nombre");
+                String contraseña = resultSet.getString("contraseña");
+               
+                System.out.println("ID: " + idUsuario);
+                System.out.println("Nombre: " + nombre);
+                System.out.println("Contraseña: " + contraseña);
+                System.out.println("---------------------------");
+            }
+
+            resultSet.close();
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    // metodo insertar usuario
+    public void insertarUsuarioABC() {
+    try {
+        Statement statement = SQLConexion.createStatement();
+
+        // Consulta SQL de inserción para un usuario "abc" con contraseña "abc123"
+        String query = "INSERT INTO usuario (nombre, contraseña) VALUES ('oscar', 'admin123')";
+
+        // Ejecutar la consulta de inserción
+        statement.executeUpdate(query);
+
+        System.out.println("Usuario 'oscar' insertado con éxito.");
+
+        statement.close();
+        } catch (SQLException e) {
+        e.printStackTrace();
+        }
+    }
+    
+    
+    // metodo eliminar usuario 
+    public void eliminarUsuario(int idUsuario) {
+     try {
+        Statement statement = SQLConexion.createStatement();
+
+        // Consulta SQL de eliminación de usuario por ID
+        String query = "DELETE FROM usuario WHERE id_usuario = " +  idUsuario;
+
+        // Ejecutar la consulta de eliminación
+        int filasEliminadas = statement.executeUpdate(query);
+
+        if (filasEliminadas > 0) {
+            System.out.println("Usuario con ID " + idUsuario + " eliminado con éxito.");
+        } else {
+            System.out.println("No se encontró un usuario con ID " + idUsuario + ".");
+        }
+
+        statement.close();
+        } catch (SQLException e) {
+        e.printStackTrace();
+        }
+    }
+    
+    
+    // Método para actualizar un usuario por su ID
+    public void actualizarUsuario(int idUsuario, String nuevoNombre, String nuevaContraseña) {
+        try {
+            Statement statement = SQLConexion.createStatement();
+
+            // Consulta SQL de actualización de usuario por ID
+            String query = "UPDATE usuario SET nombre = '" + nuevoNombre + "', contraseña = '" + nuevaContraseña + "' WHERE id_usuario = " + idUsuario;
+
+            // Ejecutar la consulta de actualización
+            int filasActualizadas = statement.executeUpdate(query);
+
+        if (filasActualizadas > 0) {
+            System.out.println("Usuario con ID " + idUsuario + " actualizado con éxito.");
+        } else {
+            System.out.println("No se encontró un usuario con ID " + idUsuario + ".");
+        }
+
+            statement.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+        }
+    }
+    
+}
