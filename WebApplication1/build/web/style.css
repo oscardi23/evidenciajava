@@ -1,0 +1,151 @@
+
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 27/08/2023, 9:34:50 p. m.
+    Author     : Oscar Diaz
+*/
+html {
+    min-width: auto;
+    min-height: auto;
+    max-height: fit-content;
+  }
+  
+  body {
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Estilos pagina login  barra navegacion */
+  nav {
+    background-color: rgba(3, 4, 94, 0.3);
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 4rem;
+  }
+  
+  /* Estilos para el logo */
+  .logo img {
+    max-width: 5rem;
+    border-radius: 10px 15px;
+    margin-left: 0px;
+    width: 9rem;
+  }
+  
+  /* Estilos para dispositivos con un ancho de pantalla máximo de 768px  */
+  @media screen and (max-width: 768px) {
+    nav {
+      flex-direction: column;
+      height: auto;
+    }
+    .logo img {
+      width: 6rem; /* Reduce el tamaño del logo para dispositivos más pequeños */
+      margin-bottom: 1rem; /* Añade un margen inferior al logo en dispositivos más pequeños */
+    }
+  }
+  /* Estilos pagina  contenedor principal asignada a todas las paginas */
+  .container-main {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    background-image: url("img/fondo.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  
+  /* Estilos para dispositivos con un ancho de pantalla máximo de 768px  */
+  @media screen and (max-width: 768px) {
+    .container-main {
+      justify-content: center; /* Centra el contenido horizontalmente */
+      background-position: center; /* Ajusta la posición de la imagen al centro */
+      padding: 2rem; /* Agrega un espacio de 2rem alrededor del contenido */
+    }
+  }
+  /* estilos contenedor formulario pequeño login */
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #CDB8B8;
+    background-color: rgba(3, 4, 94, 0.3);
+    width: 20rem;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-left: 70px;
+  }
+  .container form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 10px;
+  }
+  .container form h6 {
+    text-align: center;
+    color: white;
+  }
+  .container img {
+    height: auto;
+    width: 15rem;
+  }
+  .container .boton-google {
+    background-color: white;
+    width: auto;
+    height: auto;
+    border-radius: 10px;
+    border: none;
+  }
+  .container #img-google {
+    width: 3rem;
+  }
+  
+  /* Estilos para dispositivos con un ancho de pantalla máximo de 768px */
+  @media screen and (max-width: 768px) {
+    .container {
+      width: 90%; /* Ajusta el ancho del contenedor al 90% del tamaño de la pantalla */
+      margin-left: 0; /* Elimina el margen izquierdo en dispositivos más pequeños */
+    }
+    .container form {
+      width: 100%; /* Ajusta el ancho del formulario al 100% del contenedor */
+    }
+    .container img {
+      width: 10rem; /* Reduce el tamaño de la imagen del formulario para dispositivos más pequeños */
+    }
+  }
+  /* ESTILOS PAGINA DE QUIENES SOMOS */
+  /* CONTENEDOR IMAGEN PRINCIPAL */
+  .img-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .img-container .img {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    cursor: pointer;
+    padding: 5rem;
+    /* Estilo para el contenedor que contiene las imágenes */
+  }/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 6/09/2023, 11:01:25 a. m.
+    Author     : Oscar Diaz
+*/
+
